@@ -1,0 +1,65 @@
+{
+  "name": "vs-godbolt",
+  "displayName": "vs-godbolt",
+  "description": "Integrated godbolt compiler explorer",
+  "version": "0.0.1",
+  "publisher": "rioter",
+  "engines": {
+    "vscode": "^1.10.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*",
+    "onCommand:extension.exploreCompilers"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.exploreCompilersSelection",
+        "title": "Compiler explorer: Explore selection"
+      },
+      {
+        "command": "extension.exploreCompilersFile",
+        "title": "Compiler explorer: Explore file"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Godbolt configurations",
+      "properties": {
+        "godbolt.compiler": {
+          "type": "string",
+          "default": "clang400",
+          "description": "The compiler string to use"
+        },
+        "godbolt.baseURL": {
+          "type": "string",
+          "default": "https://gcc.godbolt.org/api/",
+          "description": "The base api to call against"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0",
+    "mocha": "^2.3.3",
+    "@types/node": "^6.0.40",
+    "@types/mocha": "^2.2.32"
+  },
+  "dependencies": {
+    "@types/request": "0.0.42",
+    "@types/request-promise-native": "^1.0.2",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.3"
+  }
+}
